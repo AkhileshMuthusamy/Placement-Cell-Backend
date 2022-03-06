@@ -1,8 +1,10 @@
 const router = require('express').Router();
 const User = require('../../models/user');
+const verifyToken = require('../../modules/auth/verifyToken');
+const adminOnly = require('../../modules/auth/adminOnly');
 
 
-router.post('/', async (req, res) => {
+router.post('/', adminOnly, verifyToken, async (req, res) => {
     /**
      * Register new user
      */

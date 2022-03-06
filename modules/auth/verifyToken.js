@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-function auth(req, res, next) {
+function verifyToken(req, res, next) {
     /**
      * Middleware function to verify JWT token received from frontend
      */
@@ -12,10 +12,16 @@ function auth(req, res, next) {
     jwt.verify(token, process.env.TOKEN_SECRET, (error, payload) => {
         if (error) return res.status(401).json({ error: true, message: 'Invalid token' });
 
+        if (res.locals.role && payload.hasOwnProperty('role')) {
+            if (res.locals.role !== payload['role']) {
+                return res.status(401).json({ error: true, message: 'Access Denied!' })
+            }
+        }
+
         console.log(payload);
         req.user = payload;
         next();
     });
 }
 
-module.exports = auth;
+module.exports = verifyToken;
