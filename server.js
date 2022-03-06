@@ -22,6 +22,7 @@ mongoose
 
 //Import Routes
 const registerRoute = require('./routes/auth/register');
+const loginRoute = require('./routes/auth/login');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -30,6 +31,7 @@ app.use(upload.array('file', 12));
 
 //Route Middleware
 app.use('/api/register', registerRoute);
+app.use('/api/login', loginRoute);
 
 app.get('/', (req, res) => {
     res.send('Server is up and running!');
