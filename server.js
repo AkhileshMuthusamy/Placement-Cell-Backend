@@ -19,15 +19,15 @@ mongoose
   });
 
 //Import Routes
-// const authRoute = require('./routes/auth');
+const registerRoute = require('./routes/auth/register');
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(upload.array('file', 12));
 
-//Route Middlewares
-// app.use('/api/user', authRoute);
+//Route Middleware
+app.use('/api/register', registerRoute);
 
 app.get('/', (req, res) => {
     res.send('Server is up and running!');
