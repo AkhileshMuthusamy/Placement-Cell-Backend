@@ -6,7 +6,7 @@ function verifyToken(req, res, next) {
      */
 
     const token = req.header('Authorization');
-
+    // 401 Unauthorized
     if (!token) return res.status(401).json({ error: true, message: 'Access Denied' });
 
     jwt.verify(token, process.env.TOKEN_SECRET, (error, payload) => {
@@ -14,7 +14,8 @@ function verifyToken(req, res, next) {
 
         if (res.locals.role && payload.hasOwnProperty('role')) {
             if (res.locals.role !== payload['role']) {
-                return res.status(401).json({ error: true, message: 'Access Denied!' })
+                // 403 Forbidden
+                return res.status(403).json({ error: true, message: 'Access Denied!' })
             }
         }
 

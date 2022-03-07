@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true,
+        required: false,
         maxlength: [255, 'Cannot exceed 255 characters'],
         minlength: [6, 'Must be at least 6 character, got {VALUE}']
     },
@@ -89,14 +89,23 @@ const userSchema = new mongoose.Schema({
     resetPasswordExpires: {
         type: Date,
         required: false
+    },
+    hasNotified: {
+        type: Boolean,
+        required: false
     }
 }, {timestamps: true});
 
 userSchema.pre('save', function(next) {
     const user = this;
-
+    // Check if its new user registration
+    if (this.isNew) {
+        this.resetPasswordToken = '';
+        this.hasNotified = false;
+    }
+    // If password NOT modified then return
     if (!user.isModified('password')) return next();
-
+    // Hash password
     bcrypt.genSalt(10, function(err, salt) {
         if (err) return next(err);
 

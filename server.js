@@ -21,8 +21,8 @@ mongoose
     });
 
 //Import Routes
-const registerRoute = require('./routes/auth/register');
-const loginRoute = require('./routes/auth/login');
+const registerRoute = require('./routes/user/register');
+const loginRoute = require('./routes/user/login');
 
 app.use(cors());
 app.use(bodyParser.json());
