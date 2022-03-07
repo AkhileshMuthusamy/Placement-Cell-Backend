@@ -33,7 +33,11 @@ router.post('/', (req, res) => {
                         return res.status(500).json({ error: true, message: 'Error signing token'});
                     });
             } else {
-                return res.status(400).json({error: true, message: 'Invalid password'});
+                return res.status(400).json({ 
+                    error: true,
+                    message: {password: {message: 'Invalid password'}},
+                    notification: {type: 'ERROR', message: 'Invalid password'}
+                });
             }
         });
     });
