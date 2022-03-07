@@ -23,6 +23,7 @@ mongoose
 //Import Routes
 const registerRoute = require('./routes/user/register');
 const loginRoute = require('./routes/user/login');
+const changePasswordRoute = require('./routes/user/change-password');
 const generatePasswordRoute = require('./routes/user/generate-password');
 
 app.use(cors());
@@ -33,6 +34,7 @@ app.use(upload.array('file', 12));
 //Route Middleware
 app.use('/api/register', registerRoute);
 app.use('/api/login', loginRoute);
+app.use('/api/change-password', changePasswordRoute);
 app.use('/api/generate-password', generatePasswordRoute);
 
 app.get('/', (req, res) => {
