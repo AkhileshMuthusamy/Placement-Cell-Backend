@@ -6,7 +6,7 @@ function adminOnly(req, res, next) {
      * Note: Do not use req or request object to add properties
      * https://davidburgos.blog/how-to-pass-parameters-between-middleware-in-expressjs/
      */
-    res.locals.role = ['ADMIN'];
+    res.locals.role = ['FACULTY', 'PLACEMENT'];
     next();
 }
 
