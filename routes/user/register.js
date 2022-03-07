@@ -3,12 +3,8 @@ const User = require('../../models/user');
 const verifyToken = require('../../modules/auth/verifyToken');
 const adminOnly = require('../../modules/auth/adminOnly');
 const mailer = require('../../modules/email/mailer');
+const generateRandomNumber = require('../../modules/utils');
 
-function generateRandomNumber() {
-    let min = 100000;
-    let max = 999999;
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
 
 router.post('/', adminOnly, verifyToken, async (req, res) => {
     /**
