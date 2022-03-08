@@ -119,6 +119,7 @@ userSchema.pre('save', function(next) {
 });
 
 userSchema.methods.generatePasswordReset = function() {
+    this.hasNotified = false;
     this.resetPasswordToken = crypto.randomBytes(20).toString('hex');
     this.resetPasswordExpires = Date.now() + 3600000; //expires in an hour
 };
