@@ -4,7 +4,7 @@ const User = require('../../models/user');
 const verifyToken = require('../../modules/auth/verifyToken');
 const mailer = require('../../modules/email/mailer');
 
-router.post('/', verifyToken, async (req, res) => {
+router.post('/', verifyToken, (req, res) => {
     // Check if request body contains all required fields
     if (!req.body.newPassword || !req.body.oldPassword) {
         return res.status(400).json({
