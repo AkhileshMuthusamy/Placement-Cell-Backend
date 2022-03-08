@@ -47,9 +47,9 @@ router.post('/', verifyToken, (req, res) => {
                         console.log(err);
                         user.hasNotified = false;
                         user.save().then(() => {
-                            return res.status(400).json({ 
+                            return res.status(500).json({ 
                                 error: true,
-                                message: {email: {message: 'Unable to send email'}},
+                                message: err,
                                 notification: {type: 'ERROR', message: 'Unable to send email'}
                             });
                         });
@@ -57,9 +57,9 @@ router.post('/', verifyToken, (req, res) => {
                 })
                 .catch(err => {
                     console.log(err);
-                    return res.status(400).json({ 
+                    return res.status(500).json({ 
                         error: true,
-                        message: {form: {message: 'Unable to change password'}},
+                        message: err,
                         notification: {type: 'ERROR', message: 'Unable to change password'}
                     });
                 });
@@ -73,9 +73,9 @@ router.post('/', verifyToken, (req, res) => {
         })
         .catch(err => {
             console.log(err);
-            return res.status(400).json({ 
+            return res.status(500).json({ 
                 error: true,
-                message: {oldPassword: {message: 'Unable to verify password'}},
+                message: err,
                 notification: {type: 'ERROR', message: 'Unable to verify password'}
             });
         });
