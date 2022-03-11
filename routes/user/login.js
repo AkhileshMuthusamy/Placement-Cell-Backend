@@ -35,7 +35,7 @@ router.post('/', (req, res) => {
             } else {
                 return res.status(400).json({ 
                     error: true,
-                    message: {password: {message: 'Invalid password'}},
+                    message: 'Invalid password',
                     notification: {type: 'ERROR', message: 'Invalid password'}
                 });
             }
