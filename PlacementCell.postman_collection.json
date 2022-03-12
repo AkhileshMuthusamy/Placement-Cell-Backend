@@ -1,0 +1,2776 @@
+{
+	"info": {
+		"_postman_id": "3cbcc351-1b0b-4013-95d3-8ff9cbdaeae4",
+		"name": "PlacementCell",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "firstName",
+									"value": "Faculty1",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Test",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "akhileshmuthusamy@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "role",
+									"value": "FACULTY",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "+918224466589",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "MALE",
+									"type": "text"
+								},
+								{
+									"key": "id",
+									"value": "S002",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8626/api/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8626",
+							"path": [
+								"api",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Register User: Validation Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "firstName",
+											"value": "Admin",
+											"type": "text"
+										},
+										{
+											"key": "lastName",
+											"value": "Account",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "admin@admin.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "role",
+											"value": "ADMIN",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "+918220104402",
+											"type": "text"
+										},
+										{
+											"key": "gender",
+											"value": "M",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8626/api/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8626",
+									"path": [
+										"api",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "435"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1b3-Whtm27HvC5BYBW7BVGnAg+34qGA\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 06 Mar 2022 14:29:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": true,\n    \"message\": {\n        \"id\": {\n            \"name\": \"ValidatorError\",\n            \"message\": \"Field cannot be empty\",\n            \"properties\": {\n                \"message\": \"Field cannot be empty\",\n                \"type\": \"required\",\n                \"path\": \"id\"\n            },\n            \"kind\": \"required\",\n            \"path\": \"id\"\n        },\n        \"gender\": {\n            \"name\": \"ValidatorError\",\n            \"message\": \"M is not supported\",\n            \"properties\": {\n                \"message\": \"M is not supported\",\n                \"type\": \"enum\",\n                \"enumValues\": [\n                    \"MALE\",\n                    \"FEMALE\",\n                    \"OTHER\"\n                ],\n                \"path\": \"gender\",\n                \"value\": \"M\"\n            },\n            \"kind\": \"enum\",\n            \"path\": \"gender\",\n            \"value\": \"M\"\n        }\n    }\n}"
+						},
+						{
+							"name": "Register User: Email Validation Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "firstName",
+											"value": "Admin",
+											"type": "text"
+										},
+										{
+											"key": "lastName",
+											"value": "Account",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "admin@admin.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "role",
+											"value": "ADMIN",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "+918220104402",
+											"type": "text"
+										},
+										{
+											"key": "gender",
+											"value": "M",
+											"type": "text"
+										},
+										{
+											"key": "id",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8626/api/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8626",
+									"path": [
+										"api",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "672"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a0-mktWO3SNAvg1vKAPQElRZX9THvs\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 06 Mar 2022 15:00:55 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": true,\n    \"message\": {\n        \"id\": {\n            \"name\": \"ValidatorError\",\n            \"message\": \"Field cannot be empty\",\n            \"properties\": {\n                \"message\": \"Field cannot be empty\",\n                \"type\": \"required\",\n                \"path\": \"id\"\n            },\n            \"kind\": \"required\",\n            \"path\": \"id\"\n        },\n        \"email\": {\n            \"name\": \"ValidatorError\",\n            \"message\": \"Not a valid email address!\",\n            \"properties\": {\n                \"message\": \"Not a valid email address!\",\n                \"type\": \"user defined\",\n                \"path\": \"email\",\n                \"value\": \"admin55\"\n            },\n            \"kind\": \"user defined\",\n            \"path\": \"email\",\n            \"value\": \"admin55\"\n        },\n        \"gender\": {\n            \"name\": \"ValidatorError\",\n            \"message\": \"M is not supported\",\n            \"properties\": {\n                \"message\": \"M is not supported\",\n                \"type\": \"enum\",\n                \"enumValues\": [\n                    \"MALE\",\n                    \"FEMALE\",\n                    \"OTHER\"\n                ],\n                \"path\": \"gender\",\n                \"value\": \"M\"\n            },\n            \"kind\": \"enum\",\n            \"path\": \"gender\",\n            \"value\": \"M\"\n        }\n    }\n}"
+						},
+						{
+							"name": "Register User: Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "firstName",
+											"value": "Admin",
+											"type": "text"
+										},
+										{
+											"key": "lastName",
+											"value": "Account",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "admin@admin.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "role",
+											"value": "ADMIN",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "+919999955562",
+											"type": "text"
+										},
+										{
+											"key": "gender",
+											"value": "MALE",
+											"type": "text"
+										},
+										{
+											"key": "id",
+											"value": "ADMIN",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8626/api/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8626",
+									"path": [
+										"api",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "49"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"31-d/FJkN2cRq13yhOfk48yPTja0VM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 06 Mar 2022 15:03:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": \"6224cd591711ed42ac97982c\",\n    \"error\": false\n}"
+						},
+						{
+							"name": "Register User: Duplicate Validation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "firstName",
+											"value": "Admin",
+											"type": "text"
+										},
+										{
+											"key": "lastName",
+											"value": "Account",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "admin@admin.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "123456",
+											"type": "text"
+										},
+										{
+											"key": "role",
+											"value": "ADMIN",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "+919999955562",
+											"type": "text"
+										},
+										{
+											"key": "gender",
+											"value": "MALE",
+											"type": "text"
+										},
+										{
+											"key": "id",
+											"value": "ADMIN",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8626/api/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8626",
+									"path": [
+										"api",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "113"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"71-W4WeU6jVBqsxEwXivL+FH8Gzf/g\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 06 Mar 2022 15:50:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": true,\n    \"message\": {\n        \"index\": 0,\n        \"code\": 11000,\n        \"keyPattern\": {\n            \"email\": 1\n        },\n        \"keyValue\": {\n            \"email\": \"admin@admin.com\"\n        }\n    }\n}"
+						},
+						{
+							"name": "Register User by FACULTY",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{TOKEN}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "firstName",
+											"value": "Akhilesh",
+											"type": "text"
+										},
+										{
+											"key": "lastName",
+											"value": "Muthusamy",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "makilesh005@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "password",
+											"type": "text"
+										},
+										{
+											"key": "role",
+											"value": "FACULTY",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "+9182244665",
+											"type": "text"
+										},
+										{
+											"key": "gender",
+											"value": "MALE",
+											"type": "text"
+										},
+										{
+											"key": "id",
+											"value": "S001",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8626/api/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8626",
+									"path": [
+										"api",
+										"register"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "41"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"29-OrAPTMA0PKHgNyJtp5fbIDjs0zg\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 06 Mar 2022 23:18:12 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": true,\n    \"message\": \"Access Denied!\"\n}"
+						},
+						{
+							"name": "Register User: Unable to Send email",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{TOKEN}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "firstName",
+											"value": "Faculty1",
+											"type": "text"
+										},
+										{
+											"key": "lastName",
+											"value": "Test",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "akhileshmuthusamy@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "password",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "role",
+											"value": "FACULTY",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "+918224466589",
+											"type": "text"
+										},
+										{
+											"key": "gender",
+											"value": "MALE",
+											"type": "text"
+										},
+										{
+											"key": "id",
+											"value": "S002",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8626/api/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8626",
+									"path": [
+										"api",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "134"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"86-dykAkeUxBSKEWqH8Rkgo/o6JGE4\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 07 Mar 2022 03:35:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": true,\n    \"message\": {\n        \"email\": {\n            \"message\": \"Unable to send email\"\n        }\n    },\n    \"notification\": {\n        \"type\": \"ERROR\",\n        \"message\": \"Unable to send email\"\n    }\n}"
+						},
+						{
+							"name": "Register User: Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{TOKEN}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "firstName",
+											"value": "Faculty1",
+											"type": "text"
+										},
+										{
+											"key": "lastName",
+											"value": "Test",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "akhileshmuthusamy@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "password",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "role",
+											"value": "FACULTY",
+											"type": "text"
+										},
+										{
+											"key": "phone",
+											"value": "+918224466589",
+											"type": "text"
+										},
+										{
+											"key": "gender",
+											"value": "MALE",
+											"type": "text"
+										},
+										{
+											"key": "id",
+											"value": "S002",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8626/api/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8626",
+									"path": [
+										"api",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "119"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"77-6qgZXT9+C/nmFR0FfclsYrXESpg\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 07 Mar 2022 03:51:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": \"622581266bfcdfedbc7f9252\",\n    \"error\": false,\n    \"notification\": {\n        \"type\": \"INFO\",\n        \"message\": \"User created successfully!\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json();\r",
+									"\r",
+									"if (response.hasOwnProperty('data')) {\r",
+									"    data = response['data']\r",
+									"\r",
+									"    if (data.hasOwnProperty('token')) {\r",
+									"        let token = data['token']\r",
+									"        if (token) {\r",
+									"            // Grab the payload and, save to a variable for later use\r",
+									"            pm.environment.set(\"TOKEN\", token);\r",
+									"            const [,payload,] = token.split('.');\r",
+									"            pm.environment.set(\"ID\", JSON.parse(atob(payload))['id']);\r",
+									"        }\r",
+									"    }\r",
+									"}\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "akhileshmuthusamy@gmail.com",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "password",
+									"value": "password1",
+									"type": "text"
+								},
+								{
+									"key": "role",
+									"value": "USER",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "id",
+									"value": "S001",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8626/api/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8626",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login: Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "akhileshmuthusamy@gmail.com",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "password",
+											"value": "password1",
+											"type": "text"
+										},
+										{
+											"key": "role",
+											"value": "USER",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "id",
+											"value": "S001",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8626/api/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8626",
+									"path": [
+										"api",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "464"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1d0-IfTDiY3jt05CD9cdlPlDS5bBJHM\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 11 Mar 2022 15:09:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlMwMDEiLCJyb2xlIjoiRkFDVUxUWSIsImlhdCI6MTY0NzAxMTM0NiwiZXhwIjoxNjQ3MTg0MTQ2fQ.SdUaDFv10tx9TPjUFcRGhobG_31g2cTd-2ZwUb0s8xM\",\n        \"profile\": {\n            \"firstName\": \"Akhilesh\",\n            \"lastName\": \"Muthusamy\",\n            \"email\": \"makilesh005@gmail.com\",\n            \"id\": \"S001\",\n            \"gender\": \"MALE\",\n            \"role\": \"FACULTY\",\n            \"phone\": \"+9182244665\",\n            \"createdAt\": \"2022-03-06T23:11:39.722Z\",\n            \"updatedAt\": \"2022-03-08T18:33:54.399Z\",\n            \"__v\": 0,\n            \"hasNotified\": true\n        }\n    },\n    \"error\": false\n}"
+						}
+					]
+				},
+				{
+					"name": "Generate Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "S001",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8626/api/generate-password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8626",
+							"path": [
+								"api",
+								"generate-password"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Generate Password: Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{TOKEN}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "id",
+											"value": "S001",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8626/api/generate-password",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8626",
+									"path": [
+										"api",
+										"generate-password"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "123"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"7b-d/EbJPrg8XAbrMVKL5QnfPu/1n8\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 07 Mar 2022 18:15:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": \"62253fab49282b41c9298aef\",\n    \"error\": false,\n    \"notification\": {\n        \"type\": \"INFO\",\n        \"message\": \"Successfully emailed password!\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "oldPassword",
+									"value": "129361",
+									"type": "text"
+								},
+								{
+									"key": "newPassword",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8626/api/change-password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8626",
+							"path": [
+								"api",
+								"change-password"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Change Password: Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{TOKEN}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "oldPassword",
+											"value": "129361",
+											"type": "text"
+										},
+										{
+											"key": "newPassword",
+											"value": "password",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8626/api/change-password",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8626",
+									"path": [
+										"api",
+										"change-password"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "123"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"7b-xtcYPmYVY3x86wWgI1EUyle8MMM\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 07 Mar 2022 20:31:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": \"62253fab49282b41c9298aef\",\n    \"error\": false,\n    \"notification\": {\n        \"type\": \"INFO\",\n        \"message\": \"Password changed successfully!\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "S001",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8626/api/forgot-password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8626",
+							"path": [
+								"api",
+								"forgot-password"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Forgot Password: Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "id",
+											"value": "S001",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8626/api/forgot-password",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8626",
+									"path": [
+										"api",
+										"forgot-password"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "164"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a4-hxrIJ2mrAFcd0AhTwj6SdkVw6f4\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 08 Mar 2022 05:06:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": \"62253fab49282b41c9298aef\",\n    \"error\": false,\n    \"notification\": {\n        \"type\": \"INFO\",\n        \"message\": \"An email has been sent to reset your password. Please check your inbox.\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "newPassword",
+									"value": "password1",
+									"type": "text"
+								},
+								{
+									"key": "resetToken",
+									"value": "c8106f6a6d276fe85637c9ce878fa4568ea18eba",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8626/api/reset-password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8626",
+							"path": [
+								"api",
+								"reset-password"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Reset Password: Expired Token",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "newPassword",
+											"value": "password1",
+											"type": "text"
+										},
+										{
+											"key": "resetToken",
+											"value": "c8106f6a6d276fe85637c9ce878fa4568ea18eba",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8626/api/reset-password",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8626",
+									"path": [
+										"api",
+										"reset-password"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "100"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"64-ZEqbwq8nWLsz7QWGRGWq59l/oTE\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 08 Mar 2022 18:32:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": true,\n    \"message\": \"Token expired!\",\n    \"notification\": {\n        \"type\": \"ERROR\",\n        \"message\": \"Token expired!\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Create Category",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"menu\": \"Fertilizers\",\r\n        \"child\": [\r\n            {\r\n                \"menu\": \"Biological Fertilizers\",\r\n                \"child\": []\r\n            },\r\n            {\r\n                \"menu\": \"Organic Fertilizers\",\r\n                \"child\": []\r\n            },\r\n            {\r\n                \"menu\": \"Chemical Fertilizers\",\r\n                \"child\": []\r\n            }\r\n        ] \r\n    },\r\n    {\r\n        \"menu\": \"Remedies\",\r\n        \"child\": [\r\n            {\r\n                \"menu\": \"Bio Pesticides\",\r\n                \"child\": []\r\n            },\r\n            {\r\n                \"menu\": \"Insecticides\",\r\n                \"child\": []\r\n            },\r\n            {\r\n                \"menu\": \"Herbicides\",\r\n                \"child\": []\r\n            }\r\n        ]\r\n    },\r\n    {\r\n        \"menu\": \"Irrigation\",\r\n        \"child\": []\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8626/api/category",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8626",
+					"path": [
+						"api",
+						"category"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create Category - Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"menu\": \"Fertilizers\",\r\n        \"child\": [\r\n            {\r\n                \"menu\": \"Biological Fertilizers\",\r\n                \"child\": []\r\n            },\r\n            {\r\n                \"menu\": \"Organic Fertilizers\",\r\n                \"child\": []\r\n            },\r\n            {\r\n                \"menu\": \"Chemical Fertilizers\",\r\n                \"child\": []\r\n            }\r\n        ] \r\n    },\r\n    {\r\n        \"menu\": \"Remedies\",\r\n        \"child\": [\r\n            {\r\n                \"menu\": \"Bio Pesticides\",\r\n                \"child\": []\r\n            },\r\n            {\r\n                \"menu\": \"Insecticides\",\r\n                \"child\": []\r\n            },\r\n            {\r\n                \"menu\": \"Herbicides\",\r\n                \"child\": []\r\n            }\r\n        ]\r\n    },\r\n    {\r\n        \"menu\": \"Irrigation\",\r\n        \"child\": []\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8626/api/category",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8626",
+							"path": [
+								"api",
+								"category"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "49"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"31-I997nKhuKzwvHt8RhjKuRseT/74\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 07 Mar 2021 23:48:16 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": \"6045663f9064741d90f5036c\",\n    \"error\": false\n}"
+				}
+			]
+		},
+		{
+			"name": "Add Category",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Category 2\",\r\n    \"parent_id\": \"0\",\r\n    \"child\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8626/api/category",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8626",
+					"path": [
+						"api",
+						"category"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Add Parent Category - Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Category 1\",\r\n    \"parent_id\": \"0\",\r\n    \"child\": []\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8626/api/category",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8626",
+							"path": [
+								"api",
+								"category"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "112"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"70-GV3htTnMnViN94f1mVhmL82Wyeo\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 18 Mar 2021 21:37:44 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"child\": [],\n        \"_id\": \"6053c827b59f74261ce92474\",\n        \"name\": \"Category 1\",\n        \"parent_id\": \"0\",\n        \"__v\": 0\n    },\n    \"error\": false\n}"
+				}
+			]
+		},
+		{
+			"name": "Update Category",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"_id\": \"6053caacea59373744ada113\",\r\n    \"data\": {\r\n        \"name\": \"Category-2\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8626/api/category",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8626",
+					"path": [
+						"api",
+						"category"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update Category - Success",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_id\": \"6053caacea59373744ada113\",\r\n    \"data\": {\r\n        \"name\": \"Category-2\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8626/api/category",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8626",
+							"path": [
+								"api",
+								"category"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "57"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"39-/CAdzlHACy4fTwoc+EwiUqcW9+Q\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 18 Mar 2021 21:55:28 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": false,\n    \"message\": \"Category updated successfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete Category",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"_id\": \"6053caacea59373744ada113\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8626/api/category",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8626",
+					"path": [
+						"api",
+						"category"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Delete Category - Success",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_id\": \"6053caacea59373744ada113\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8626/api/category",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8626",
+							"path": [
+								"api",
+								"category"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "57"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"39-dTNEp/2EZECcHfaHbSoM93BWLkQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 18 Mar 2021 22:13:00 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": false,\n    \"message\": \"Category deleted successfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Category",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8626/api/category",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8626",
+					"path": [
+						"api",
+						"category"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Category - Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8626/api/category",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8626",
+							"path": [
+								"api",
+								"category"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "204"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"cc-GuSnCE97xjd8rpLLpH0oNg9EN5w\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 18 Mar 2021 21:48:36 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"child\": [],\n            \"_id\": \"6053c827b59f74261ce92474\",\n            \"name\": \"Category 1\",\n            \"parent_id\": \"0\",\n            \"__v\": 0\n        },\n        {\n            \"child\": [],\n            \"_id\": \"6053caacea59373744ada113\",\n            \"name\": \"Category 2\",\n            \"parent_id\": \"0\",\n            \"__v\": 0\n        }\n    ],\n    \"error\": false\n}"
+				}
+			]
+		},
+		{
+			"name": "Get All Products",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQ1MjgyODE2MzJlMDVlMjA4YmJkMTYiLCJpcCI6Ijo6MSIsImlhdCI6MTYxNTU4MDEzMywiZXhwIjoxNjE1NTgwNDMzfQ.pxI7q2W-LHB9XpVg8JD1eIrKcw20kf8yT4ysB2EThmc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8626/api/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8626",
+					"path": [
+						"api",
+						"product"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get All Products - Empty",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQ1MjgyODE2MzJlMDVlMjA4YmJkMTYiLCJpcCI6Ijo6MSIsImlhdCI6MTYxNTU4MDEzMywiZXhwIjoxNjE1NTgwNDMzfQ.pxI7q2W-LHB9XpVg8JD1eIrKcw20kf8yT4ysB2EThmc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8626/api/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8626",
+							"path": [
+								"api",
+								"product"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "25"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"19-+I3bVcfj19U4RjV5JqThLsd7rOY\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 12 Mar 2021 21:27:52 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [],\n    \"error\": false\n}"
+				}
+			]
+		},
+		{
+			"name": "Search Products",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQ1MjgyODE2MzJlMDVlMjA4YmJkMTYiLCJpcCI6Ijo6MSIsImlhdCI6MTYxNTU4MDEzMywiZXhwIjoxNjE1NTgwNDMzfQ.pxI7q2W-LHB9XpVg8JD1eIrKcw20kf8yT4ysB2EThmc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8626/api/product?s=che",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8626",
+					"path": [
+						"api",
+						"product"
+					],
+					"query": [
+						{
+							"key": "s",
+							"value": "che"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Search Product Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQ1MjgyODE2MzJlMDVlMjA4YmJkMTYiLCJpcCI6Ijo6MSIsImlhdCI6MTYxNTU4MDEzMywiZXhwIjoxNjE1NTgwNDMzfQ.pxI7q2W-LHB9XpVg8JD1eIrKcw20kf8yT4ysB2EThmc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8626/api/product?s=chemical",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8626",
+							"path": [
+								"api",
+								"product"
+							],
+							"query": [
+								{
+									"key": "s",
+									"value": "chemical"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "6595"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"19c3-Y5Ss6EnEEK69+ygdNBlfcEK8JzI\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 13 Mar 2021 00:37:14 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"_id\": \"604bef58c2a2134948d65f2e\",\n            \"name\": \"Chemical Fertilizer\",\n            \"SKU\": \"PRD01\",\n            \"sellingPrice\": 20,\n            \"description\": \"Used on crops\",\n            \"dimension\": \"10x20x56\",\n            \"weight\": 5000,\n            \"category\": \"1-1-1\",\n            \"manufacturer\": \"SKC Ltd\",\n            \"images\": [],\n            \"__v\": 0\n        },\n        {\n            \"_id\": \"604bf01b7304fd4e68d4334d\",\n            \"name\": \"Chemical Fertilizer\",\n            \"SKU\": \"PRD02\",\n            \"sellingPrice\": 20,\n            \"description\": \"Used on crops\",\n            \"dimension\": \"10x20x56\",\n            \"weight\": 5000,\n            \"category\": \"1-1-1\",\n            \"manufacturer\": \"SKC Ltd\",\n            \"images\": [\n                {\n                    \"_id\": \"604bf01b7304fd4e68d4334e\",\n                    \"filename\": \"leaf_x64.png\",\n                    \"contentType\": \"image/png\",\n                    \"imageBase64\": \"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\"\n                },\n                {\n                    \"_id\": \"604bf01b7304fd4e68d4334f\",\n                    \"filename\": \"leaf_x64_white.png\",\n                    \"contentType\": \"image/png\",\n                    \"imageBase64\": \"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\"\n                }\n            ],\n            \"__v\": 0\n        }\n    ],\n    \"error\": false\n}"
+				}
+			]
+		},
+		{
+			"name": "Create Product Without Image",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQ1MjgyODE2MzJlMDVlMjA4YmJkMTYiLCJpcCI6Ijo6MSIsImlhdCI6MTYxNTU4MDEzMywiZXhwIjoxNjE1NTgwNDMzfQ.pxI7q2W-LHB9XpVg8JD1eIrKcw20kf8yT4ysB2EThmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Chemical Fertilizer",
+							"type": "text"
+						},
+						{
+							"key": "SKU",
+							"value": "PRD01",
+							"type": "text"
+						},
+						{
+							"key": "sellingPrice",
+							"value": "20",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Used on crops",
+							"type": "text"
+						},
+						{
+							"key": "dimension",
+							"value": "10x20x56",
+							"type": "text"
+						},
+						{
+							"key": "weight",
+							"value": "5000",
+							"type": "text"
+						},
+						{
+							"key": "category",
+							"value": "1-1-1",
+							"type": "text"
+						},
+						{
+							"key": "manufacturer",
+							"value": "SKC Ltd",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8626/api/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8626",
+					"path": [
+						"api",
+						"product"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create Product",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQ1MjgyODE2MzJlMDVlMjA4YmJkMTYiLCJpcCI6Ijo6MSIsImlhdCI6MTYxNTU4MDEzMywiZXhwIjoxNjE1NTgwNDMzfQ.pxI7q2W-LHB9XpVg8JD1eIrKcw20kf8yT4ysB2EThmc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "allfile",
+									"type": "file",
+									"src": [
+										"/D:/leaf_x64.png",
+										"/D:/leaf_x64_white.png"
+									]
+								},
+								{
+									"key": "name",
+									"value": "Chemical Fertilizer",
+									"type": "text"
+								},
+								{
+									"key": "SKU",
+									"value": "PRD01",
+									"type": "text"
+								},
+								{
+									"key": "sellingPrice",
+									"value": "20",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Used on crops",
+									"type": "text"
+								},
+								{
+									"key": "dimension",
+									"value": "10x20x56",
+									"type": "text"
+								},
+								{
+									"key": "weight",
+									"value": "5000",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "1-1-1",
+									"type": "text"
+								},
+								{
+									"key": "manufacturer",
+									"value": "SKC Ltd",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8626/api/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8626",
+							"path": [
+								"api",
+								"product"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2-vyGp6PvFo4RvsFtPoIWeCReyIC8\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 12 Mar 2021 22:04:33 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{}"
+				}
+			]
+		},
+		{
+			"name": "Create Product With Image",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQ1MjgyODE2MzJlMDVlMjA4YmJkMTYiLCJpcCI6Ijo6MSIsImlhdCI6MTYxNTU4MDEzMywiZXhwIjoxNjE1NTgwNDMzfQ.pxI7q2W-LHB9XpVg8JD1eIrKcw20kf8yT4ysB2EThmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "allfile",
+							"type": "file",
+							"src": [
+								"/D:/leaf_x64.png",
+								"/D:/leaf_x64_white.png"
+							]
+						},
+						{
+							"key": "name",
+							"value": "Greatindos Premium Quality Calcium Nitrate Fertilizer For Plants",
+							"type": "text"
+						},
+						{
+							"key": "SKU",
+							"value": "PRD03",
+							"type": "text"
+						},
+						{
+							"key": "sellingPrice",
+							"value": "2500.99",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Used on crops",
+							"type": "text"
+						},
+						{
+							"key": "dimension",
+							"value": "10x20x56",
+							"type": "text"
+						},
+						{
+							"key": "weight",
+							"value": "5000",
+							"type": "text"
+						},
+						{
+							"key": "category",
+							"value": "1-1-1",
+							"type": "text"
+						},
+						{
+							"key": "manufacturer",
+							"value": "SKC Ltd",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8626/api/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8626",
+					"path": [
+						"api",
+						"product"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create Product",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQ1MjgyODE2MzJlMDVlMjA4YmJkMTYiLCJpcCI6Ijo6MSIsImlhdCI6MTYxNTU4MDEzMywiZXhwIjoxNjE1NTgwNDMzfQ.pxI7q2W-LHB9XpVg8JD1eIrKcw20kf8yT4ysB2EThmc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "allfile",
+									"type": "file",
+									"src": [
+										"/D:/leaf_x64.png",
+										"/D:/leaf_x64_white.png"
+									]
+								},
+								{
+									"key": "name",
+									"value": "Chemical Fertilizer",
+									"type": "text"
+								},
+								{
+									"key": "SKU",
+									"value": "PRD01",
+									"type": "text"
+								},
+								{
+									"key": "sellingPrice",
+									"value": "20",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Used on crops",
+									"type": "text"
+								},
+								{
+									"key": "dimension",
+									"value": "10x20x56",
+									"type": "text"
+								},
+								{
+									"key": "weight",
+									"value": "5000",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "1-1-1",
+									"type": "text"
+								},
+								{
+									"key": "manufacturer",
+									"value": "SKC Ltd",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8626/api/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8626",
+							"path": [
+								"api",
+								"product"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2-vyGp6PvFo4RvsFtPoIWeCReyIC8\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 12 Mar 2021 22:04:33 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{}"
+				}
+			]
+		},
+		{
+			"name": "Update Product Without Image",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQ1MjgyODE2MzJlMDVlMjA4YmJkMTYiLCJpcCI6Ijo6MSIsImlhdCI6MTYxNTU4MDEzMywiZXhwIjoxNjE1NTgwNDMzfQ.pxI7q2W-LHB9XpVg8JD1eIrKcw20kf8yT4ysB2EThmc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Greatindos Premium Quality Calcium Nitrate Fertilizer For Plants",
+							"type": "text"
+						},
+						{
+							"key": "SKU",
+							"value": "PRD03",
+							"type": "text"
+						},
+						{
+							"key": "sellingPrice",
+							"value": "2500.99",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Greatindos Premium Quality Calcium Nitrate. 15.5:00:00 + 18.8 CA is another specialty fertilizer that uses calcium and nitrate to make the soil better for crops. It is a fertilizer made up of two nutrients, with a white granular appearance that dissolves quickly in water and can be absorbed rapidly by plants. It is a perfect combination of 15.5% in nitrate form that rapidly dissolves in water and 18.8% calcium. It promotes the healthy growth of the plant. The team differentiated by their imagination, knowledge, experience, and passion for agriculture brings to you innovative agro products.",
+							"type": "text"
+						},
+						{
+							"key": "dimension",
+							"value": "10x20x56",
+							"type": "text"
+						},
+						{
+							"key": "weight",
+							"value": "5000",
+							"type": "text"
+						},
+						{
+							"key": "category",
+							"value": "1-1-1",
+							"type": "text"
+						},
+						{
+							"key": "manufacturer",
+							"value": "SKC Ltd",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8626/api/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8626",
+					"path": [
+						"api",
+						"product"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update Product Without Image - Success",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "auth-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQ1MjgyODE2MzJlMDVlMjA4YmJkMTYiLCJpcCI6Ijo6MSIsImlhdCI6MTYxNTU4MDEzMywiZXhwIjoxNjE1NTgwNDMzfQ.pxI7q2W-LHB9XpVg8JD1eIrKcw20kf8yT4ysB2EThmc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Greatindos Premium Quality Calcium Nitrate Fertilizer For Plants",
+									"type": "text"
+								},
+								{
+									"key": "SKU",
+									"value": "PRD03",
+									"type": "text"
+								},
+								{
+									"key": "sellingPrice",
+									"value": "2500.99",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Greatindos Premium Quality Calcium Nitrate. 15.5:00:00 + 18.8 CA is another specialty fertilizer that uses calcium and nitrate to make the soil better for crops. It is a fertilizer made up of two nutrients, with a white granular appearance that dissolves quickly in water and can be absorbed rapidly by plants. It is a perfect combination of 15.5% in nitrate form that rapidly dissolves in water and 18.8% calcium. It promotes the healthy growth of the plant. The team differentiated by their imagination, knowledge, experience, and passion for agriculture brings to you innovative agro products.",
+									"type": "text"
+								},
+								{
+									"key": "dimension",
+									"value": "10x20x56",
+									"type": "text"
+								},
+								{
+									"key": "weight",
+									"value": "5000",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "1-1-1",
+									"type": "text"
+								},
+								{
+									"key": "manufacturer",
+									"value": "SKC Ltd",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8626/api/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8626",
+							"path": [
+								"api",
+								"product"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "56"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"38-h/H/bhLqKHWWAiBYCkbrxsotWmM\""
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 13 Mar 2021 01:25:33 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": false,\n    \"message\": \"Product updated successfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete Product",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "SKU",
+							"value": "PRD01",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8626/api/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8626",
+					"path": [
+						"api",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Order",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8626/api/order?email=ak",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8626",
+					"path": [
+						"api",
+						"order"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "ak"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User Order",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8626/api/order",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8626",
+					"path": [
+						"api",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8626",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8626"
+				}
+			},
+			"response": [
+				{
+					"name": "/",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8626",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8626"
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "25"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"19-ztBnY7whRuPFwSACNIWZ1AKZssI\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 06 Mar 2022 00:50:19 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "Server is up and running!"
+				}
+			]
+		}
+	]
+}
