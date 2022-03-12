@@ -54,7 +54,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Field cannot be empty'],
         enum: {
-            values: ['ADMIN', 'FACULTY', 'PLACEMENT'],
+            values: ['ADMIN', 'FACULTY', 'PLACEMENT', 'STUDENT'],
             message: '{VALUE} is not supported'
         }
     },
