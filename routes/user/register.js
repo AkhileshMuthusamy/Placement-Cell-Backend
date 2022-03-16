@@ -50,7 +50,21 @@ router.post('/', adminOnly, verifyToken, async (req, res) => {
                     });
                 });
         } catch (err) {
-            res.status(400).json({ error: true, message: err });
+            if (err.hasOwnProperty('code')) {
+                if (err.code === 11000) {
+                    res.status(400).json({ 
+                        error: true, 
+                        message: err,
+                        notification: {type: 'ERROR', message: `${Object.keys(err.keyValue)[0]} already exist`}
+                    });
+                }
+            } else {
+                res.status(400).json({ 
+                    error: true, 
+                    message: err,
+                    notification: {type: 'ERROR', message: 'Unknown error'}
+                });
+            }
         }
     }
 

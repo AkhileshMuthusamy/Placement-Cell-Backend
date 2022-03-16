@@ -82,6 +82,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: false
     },
+    skills: [String],
     resetPasswordToken: {
         type: String,
         required: false
