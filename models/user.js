@@ -94,6 +94,10 @@ const userSchema = new mongoose.Schema({
     hasNotified: {
         type: Boolean,
         required: false
+    },
+    disabled: {
+        type: Boolean,
+        default: false
     }
 }, {timestamps: true});
 

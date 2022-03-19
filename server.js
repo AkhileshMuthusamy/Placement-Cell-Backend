@@ -28,6 +28,7 @@ const generatePasswordRoute = require('./routes/user/generate-password');
 const forgotPasswordRoute = require('./routes/user/forgot-password');
 const resetPasswordRoute = require('./routes/user/reset-password');
 const listUserRoute = require('./routes/user/list-user');
+const disableUserRoute = require('./routes/user/disable-user');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -42,6 +43,7 @@ app.use('/api/generate-password', generatePasswordRoute);
 app.use('/api/forgot-password', forgotPasswordRoute);
 app.use('/api/reset-password', resetPasswordRoute);
 app.use('/api/list-user', listUserRoute);
+app.use('/api/disable-user', disableUserRoute);
 
 app.get('/', (req, res) => {
     res.send('Server is up and running!');
