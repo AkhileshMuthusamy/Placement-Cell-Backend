@@ -16,8 +16,7 @@ router.put('/', adminOnly, verifyToken, (req, res) => {
             error: false,
             notification: {type: 'Info', message: 'Disabled the user successfully.'}
         });
-    })
-    .catch(internalError)
+    }).catch(err => internalError(res, err));
 });
 
 module.exports = router;
