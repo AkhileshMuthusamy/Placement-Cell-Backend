@@ -17,7 +17,15 @@ router.get('/', verifyToken, (req, res) => {
 });
 
 router.put('/', verifyToken, (req, res) => {
-    
+    console.log(req.body)
+
+    User.updateOne({id: res.locals.user.id}, {$set: req.body}).then(stats => {
+        res.status(200).json({
+            data: stats,
+            error: false,
+            notification: {type: 'Info', message: 'Profile updated successfully.'}
+        });
+    }).catch(err => internalError(res, err));
 });
 
 module.exports = router;
