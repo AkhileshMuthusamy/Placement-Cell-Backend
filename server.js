@@ -1,5 +1,5 @@
 const app = require('express')();
-const Agenda = require("agenda");
+// const Agenda = require("agenda");
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
@@ -46,6 +46,7 @@ const forgotPasswordRoute = require('./routes/user/forgot-password');
 const resetPasswordRoute = require('./routes/user/reset-password');
 const listUserRoute = require('./routes/user/list-user');
 const disableUserRoute = require('./routes/user/disable-user');
+const updateUserRoute = require('./routes/user/update-user');
 const profileRoute = require('./routes/user/profile');
 
 app.use(cors());
@@ -62,6 +63,7 @@ app.use('/api/forgot-password', forgotPasswordRoute);
 app.use('/api/reset-password', resetPasswordRoute);
 app.use('/api/list-user', listUserRoute);
 app.use('/api/disable-user', disableUserRoute);
+app.use('/api/update-user', updateUserRoute);
 app.use('/api/profile', profileRoute);
 
 app.get('/', (req, res) => {
