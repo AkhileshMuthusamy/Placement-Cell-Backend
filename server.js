@@ -1,4 +1,5 @@
 const app = require('express')();
+const Agenda = require("agenda");
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
@@ -12,13 +13,29 @@ const { port, appUrl, databaseUrl } = require('./config');
 
 // Connect to database
 mongoose
-    .connect(databaseUrl, { useNewUrlParser: true, useUnifiedTopology: true })
+    .connect(databaseUrl, { 
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    })
     .then(() => {
         console.log('Connected to db!');
     })
     .catch(error => {
         console.error(error);
     });
+
+
+// const agenda = new Agenda({mongo: mongoose.connection});
+
+// agenda.define("delete old users", (job, done) => {
+//     console.log(Date.now(), 'Test scheduler')
+
+//     (() => {
+//         done();
+//     });
+// });
+
+// agenda.start();
 
 //Import Routes
 const registerRoute = require('./routes/user/register');
@@ -29,6 +46,7 @@ const forgotPasswordRoute = require('./routes/user/forgot-password');
 const resetPasswordRoute = require('./routes/user/reset-password');
 const listUserRoute = require('./routes/user/list-user');
 const disableUserRoute = require('./routes/user/disable-user');
+const profileRoute = require('./routes/user/profile');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -44,6 +62,7 @@ app.use('/api/forgot-password', forgotPasswordRoute);
 app.use('/api/reset-password', resetPasswordRoute);
 app.use('/api/list-user', listUserRoute);
 app.use('/api/disable-user', disableUserRoute);
+app.use('/api/profile', profileRoute);
 
 app.get('/', (req, res) => {
     res.send('Server is up and running!');
