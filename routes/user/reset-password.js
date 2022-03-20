@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const User = require('../../models/user');
 const mailer = require('../../modules/email/mailer');
+const internalError = require('../../modules/response/internal-error');
 
 router.post('/', (req, res) => {
     // Check if request body contains all required fields
@@ -25,6 +26,8 @@ router.post('/', (req, res) => {
         user.password = req.body.newPassword;
         user.resetPasswordToken = undefined;
         user.resetPasswordExpires = undefined;
+
+        // TODO: Check password validation
 
         user.save().then(() => {
             const emailTemplateData = { username: user.id, firstName: user.firstName }
@@ -57,14 +60,7 @@ router.post('/', (req, res) => {
                 });
             });
         })
-        .catch(err => {
-            console.log(err);
-            return res.status(500).json({ 
-                error: true,
-                message: err,
-                notification: {type: 'ERROR', message: 'Unable to reset password'}
-            });
-        });
+        .catch(err => internalError(res, err));
 
 
     })

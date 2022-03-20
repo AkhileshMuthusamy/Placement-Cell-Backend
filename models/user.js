@@ -84,6 +84,7 @@ const userSchema = new mongoose.Schema({
     },
     skills: [String],
     department: [String],
+    cgpa: Number,
     resetPasswordToken: {
         type: String,
         required: false

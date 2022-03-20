@@ -9,7 +9,7 @@ router.post('/', adminOnly, verifyToken, (req, res) => {
     if (!req.body.role) return res.status(400).json({error: true, message: 'Field \'role\' missing' });
 
     //Find users with matching role and exclude password field in result
-    User.find({role: req.body.role}, "-password").then(users => {
+    User.find({role: {$in: req.body.role}}, "-password").then(users => {
         res.status(200).json({
             data: users,
             error: false,
