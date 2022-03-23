@@ -5,7 +5,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const multer = require('multer');
 var upload = multer({
-    limits: { fieldSize: 25 * 1024 * 1024 }
+    limits: { fieldSize: 5 * 1024 * 1024 } // 5 mb
 });
 
 // Fetch configuration
@@ -48,6 +48,7 @@ const listUserRoute = require('./routes/user/list-user');
 const disableUserRoute = require('./routes/user/disable-user');
 const updateUserRoute = require('./routes/user/update-user');
 const profileRoute = require('./routes/user/profile');
+const uploadGradeRoute = require('./routes/faculty/upload-grade');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -65,6 +66,7 @@ app.use('/api/list-user', listUserRoute);
 app.use('/api/disable-user', disableUserRoute);
 app.use('/api/update-user', updateUserRoute);
 app.use('/api/profile', profileRoute);
+app.use('/api/upload-grade', uploadGradeRoute);
 
 app.get('/', (req, res) => {
     res.send('Server is up and running!');

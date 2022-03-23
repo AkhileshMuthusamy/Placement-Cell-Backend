@@ -1,5 +1,5 @@
 
-function adminOnly(req, res, next) {
+function userOnly(req, res, next) {
     /**
      * Middleware function to set custom parameter to request
      * 
@@ -10,4 +10,4 @@ function adminOnly(req, res, next) {
     next();
 }
 
-module.exports = adminOnly;
+module.exports = userOnly;
