@@ -1,39 +1,18 @@
 const app = require('express')();
-// const Agenda = require("agenda");
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const mongoose = require('mongoose');
+
 const multer = require('multer');
 var upload = multer({
     limits: { fieldSize: 5 * 1024 * 1024 } // 5 mb
 });
 
 // Fetch configuration
-const { port, appUrl, databaseUrl } = require('./config');
-
-// Connect to database
-mongoose
-    .connect(databaseUrl, { 
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    })
-    .then(() => {
-        console.log('Connected to db!');
-    })
-    .catch(error => {
-        console.error(error);
-    });
+const { port, appUrl } = require('./config');
 
 
-// const agenda = new Agenda({mongo: mongoose.connection});
 
-// agenda.define("delete old users", (job, done) => {
-//     console.log(Date.now(), 'Test scheduler')
 
-//     (() => {
-//         done();
-//     });
-// });
 
 // agenda.start();
 
@@ -50,6 +29,7 @@ const updateUserRoute = require('./routes/user/update-user');
 const profileRoute = require('./routes/user/profile');
 const uploadGradeRoute = require('./routes/faculty/upload-grade');
 const studentGradeRoute = require('./routes/student/grade');
+const eventRoute = require('./routes/placement/event');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -69,6 +49,7 @@ app.use('/api/update-user', updateUserRoute);
 app.use('/api/profile', profileRoute);
 app.use('/api/upload-grade', uploadGradeRoute);
 app.use('/api/student-grade', studentGradeRoute);
+app.use('/api/event', eventRoute);
 
 app.get('/', (req, res) => {
     res.send('Server is up and running!');
