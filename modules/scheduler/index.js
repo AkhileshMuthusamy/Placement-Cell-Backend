@@ -24,7 +24,15 @@ const agenda = new Agenda({mongo: mongoose.connection});
 // listen for the ready or error event.
 agenda
     .on('ready', () => console.log("Agenda started!"))
-    .on('error', () => console.log("Agenda connection error!"));
+    .on('error', () => console.log("Agenda connection error!"))
+    .on('complete', function(job) { 
+        console.log("Job %s finished", job.attrs.name);
+        if (!job.attrs.nextRunAt) {
+            job.remove(function(err) {
+                console.log(err); //prints null
+            });
+        }
+    });
 
 // define all agenda jobs
 jobDefinitions(agenda);
