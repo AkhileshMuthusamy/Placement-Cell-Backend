@@ -21,7 +21,23 @@ const markSchema = new mongoose.Schema({
     previousGpaHeader: [String],
     sgpa: Number,
     cgpa: Number,
+    uploadedBy: String,
+    uploadedAt: String,
 }, {timestamps: true});
 
+markSchema.pre('insertMany', function(next, docs) {
+    console.log('MArk schema save')
+
+    const current_date = new Date();
+
+    if (Array.isArray(docs) && docs.length) {
+        docs = docs.map(mark => {
+            mark.uploadedAt = current_date.toISOString();
+        });
+        next();
+    } else {
+        next(new Error("No documents to insert"));
+    }
+});
 
 module.exports = mongoose.model('Mark', markSchema);

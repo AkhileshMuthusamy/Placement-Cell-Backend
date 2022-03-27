@@ -28,6 +28,8 @@ const disableUserRoute = require('./routes/user/disable-user');
 const updateUserRoute = require('./routes/user/update-user');
 const profileRoute = require('./routes/user/profile');
 const uploadGradeRoute = require('./routes/faculty/upload-grade');
+const listGradeRoute = require('./routes/faculty/list-grade');
+const deleteGradeRoute = require('./routes/faculty/delete.grade');
 const studentGradeRoute = require('./routes/student/grade');
 const eventRoute = require('./routes/placement/event');
 
@@ -48,6 +50,8 @@ app.use('/api/disable-user', disableUserRoute);
 app.use('/api/update-user', updateUserRoute);
 app.use('/api/profile', profileRoute);
 app.use('/api/upload-grade', uploadGradeRoute);
+app.use('/api/list-grade-upload', listGradeRoute);
+app.use('/api/delete-grade', deleteGradeRoute);
 app.use('/api/student-grade', studentGradeRoute);
 app.use('/api/event', eventRoute);
 
