@@ -19,20 +19,23 @@ router.post('/', verifyToken, (req, res) => {
 
         User.find({'cgpa': {$gte: event.minCgpa}}, "email").distinct('email').then(emails => {
             console.log(emails);
-            const emailTemplateData = { body: event.body }
-            const toAddress = "akhileshm@outlook.in, akhileshmuthusamy@gmail.com";
-            const subject = `New Event Invitation: ${event.title}`;
-            const emailTemplate = './modules/email/templates/new_event.ejs';
 
-            // console.dir({toAddress, subject, emailTemplate, emailTemplateData});
-
-            schedule.sendEventAlert({'data': {toAddress, subject, emailTemplate, emailTemplateData}}).then(() => {
-                res.status(200).json({
-                    data: event,
-                    error: false,
-                    notification: {type: 'INFO', message: 'Event added successfully!'}
+            if (emails.length > 0) {
+                const emailTemplateData = { body: event.body }
+                const toAddress = emails.join(', ');
+                const subject = `New Event Invitation: ${event.title}`;
+                const emailTemplate = './modules/email/templates/new_event.ejs';
+    
+                // console.dir({toAddress, subject, emailTemplate, emailTemplateData});
+    
+                schedule.sendEventAlert({'data': {toAddress, subject, emailTemplate, emailTemplateData}}).then(() => {
+                    res.status(200).json({
+                        data: event,
+                        error: false,
+                        notification: {type: 'INFO', message: 'Event added successfully!'}
+                    });
                 });
-            });
+            }
 
         });
 
