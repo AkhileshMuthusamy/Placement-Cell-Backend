@@ -13,7 +13,12 @@ const eventSchema = new mongoose.Schema({
     body: {
         type: String,
         required: true
-    }
+    },
+    minCgpa: {
+        type: Number,
+        required: true
+    },
+    remindAt: Date
 }, {timestamps: true});
 
 module.exports = mongoose.model('Event', eventSchema);

@@ -11,11 +11,6 @@ var upload = multer({
 const { port, appUrl } = require('./config');
 
 
-
-
-
-// agenda.start();
-
 //Import Routes
 const registerRoute = require('./routes/user/register');
 const loginRoute = require('./routes/user/login');
