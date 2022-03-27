@@ -7,7 +7,6 @@ const internalError = require('../../modules/response/internal-error');
 
 router.post('/', userOnly, verifyToken, (req, res) => {
 
-    console.log(req.body);
     Mark.insertMany(req.body).then((markStat) => {
         req.body.forEach((studentMark, index) => {
             User.updateOne({id: studentMark.id}, {$set: {'cgpa': studentMark.cgpa}}).catch(err => {
@@ -24,7 +23,6 @@ router.post('/', userOnly, verifyToken, (req, res) => {
 
 router.post('/verify', userOnly, verifyToken, (req, res) => {
 
-    console.log(req.body);
 
     User.find().where('id').in(req.body.ids).select('id').lean().then((s) => {
         validUsers = s.map(doc => doc.id);
