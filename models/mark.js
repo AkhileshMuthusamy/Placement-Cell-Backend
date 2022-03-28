@@ -26,8 +26,6 @@ const markSchema = new mongoose.Schema({
 }, {timestamps: true});
 
 markSchema.pre('insertMany', function(next, docs) {
-    console.log('MArk schema save')
-
     const current_date = new Date();
 
     if (Array.isArray(docs) && docs.length) {
