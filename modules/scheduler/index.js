@@ -26,7 +26,7 @@ agenda
     .on('ready', () => console.log("Agenda started!"))
     .on('error', () => console.log("Agenda connection error!"))
     .on('complete', function(job) { 
-        console.log("Job %s finished", job.attrs.name);
+        console.log("Job '%s' finished", job.attrs.name);
         if (!job.attrs.nextRunAt) {
             job.remove(function(err) {
                 console.log(err); //prints null

@@ -4,7 +4,11 @@ const schedule = {
     sendEventAlert: async (job) => {
         console.log('Job \'sendEventAlert\' scheduled!');
         const agendaJob = await agenda.now("send email", job.data);
-        // console.log(agendaJob);
+        return agendaJob.attrs._id;
+    },
+    sendSMSEventAlert: async (job) => {
+        console.log('Job \'sendSMSEventAlert\' scheduled!');
+        const agendaJob = await agenda.now("send sms", job.data);
         return agendaJob.attrs._id;
     },
     remindEventThroughEmail: async (job) => {

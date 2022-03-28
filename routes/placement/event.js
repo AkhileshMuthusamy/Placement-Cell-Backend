@@ -18,8 +18,13 @@ router.post('/', verifyToken, (req, res) => {
 
     event.save().then(() => {
 
-        User.find({'cgpa': {$gte: event.minCgpa}}, "email").distinct('email').then(emails => {
-            console.log(emails);
+        User.find({'cgpa': {$gte: event.minCgpa}}, "email phone").then(users => {
+
+            let toNumbers = users.map(user => user.phone);
+            toNumbers = toNumbers.filter(phone => !!phone);
+            let emails = users.map(user => user.email);
+
+            console.log(emails, toNumbers);
 
             if (emails.length > 0) {
                 const emailTemplateData = { body: event.body }
@@ -34,6 +39,10 @@ router.post('/', verifyToken, (req, res) => {
                         notification: {type: 'INFO', message: 'Event added successfully!'}
                     });
                 });
+
+                let body = `You are invited to event '${event.title}' scheduled at ${moment(event.date).format('MMMM Do YYYY, h:mm:ss a')}`
+
+                schedule.sendSMSEventAlert({'data': {toNumbers, body}})
 
                 let dateTime = event.remindAt;
                 if (dateTime) {
