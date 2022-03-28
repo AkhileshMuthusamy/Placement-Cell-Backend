@@ -81,8 +81,7 @@ router.put('/', verifyToken, (req, res) => {
                 let subject = `Event Updated: ${event.title}`;
                 const emailTemplate = './modules/email/templates/new_event.ejs';
     
-                schedule.sendEventAlert({'data': {toAddress, subject, emailTemplate, emailTemplateData}}).then((result) => {
-                    console.log(typeof(result), result);
+                schedule.sendEventAlert({'data': {toAddress, subject, emailTemplate, emailTemplateData}}).then((jobId) => {
                     res.status(200).json({
                         data: event,
                         error: false,
