@@ -66,24 +66,15 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: false
     },
-    postcode: {
+    department: {
         type: String,
         required: false
     },
-    city: {
-        type: String,
-        required: false
-    },
-    state: {
-        type: String,
-        required: false
-    },
-    country: {
+    batch: {
         type: String,
         required: false
     },
     skills: [String],
-    department: [String],
     cgpa: Number,
     resetPasswordToken: {
         type: String,
