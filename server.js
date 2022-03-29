@@ -27,6 +27,9 @@ const listGradeRoute = require('./routes/faculty/list-grade');
 const deleteGradeRoute = require('./routes/faculty/delete.grade');
 const studentGradeRoute = require('./routes/student/grade');
 const eventRoute = require('./routes/placement/event');
+const skillRoute = require('./routes/placement/skill');
+const departmentRoute = require('./routes/placement/department');
+const batchRoute = require('./routes/placement/batch');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -49,6 +52,9 @@ app.use('/api/list-grade-upload', listGradeRoute);
 app.use('/api/delete-grade', deleteGradeRoute);
 app.use('/api/student-grade', studentGradeRoute);
 app.use('/api/event', eventRoute);
+app.use('/api/skill', skillRoute);
+app.use('/api/department', departmentRoute);
+app.use('/api/batch', batchRoute);
 
 app.get('/', (req, res) => {
     res.send('Server is up and running!');
