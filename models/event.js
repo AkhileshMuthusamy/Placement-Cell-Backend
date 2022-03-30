@@ -19,6 +19,8 @@ const eventSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    batch: [String],
+    department: [String],
     remindAt: Date,
     reminderJob: mongoose.ObjectId
 }, {timestamps: true});

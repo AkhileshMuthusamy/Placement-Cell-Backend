@@ -5,6 +5,7 @@ const Event = require('../../models/event');
 const User = require('../../models/user');
 const internalError = require('../../modules/response/internal-error');
 const agenda = require("../../modules/scheduler/index");
+const moment = require('moment');
 
 router.post('/', verifyToken, (req, res) => {
 
@@ -16,15 +17,20 @@ router.post('/', verifyToken, (req, res) => {
         res.status(400).json({error: true, message: error.errors, notification: {type: 'ERROR', message: 'One or more fields has error'}})
     }
 
+    let query = {};
+    query['cgpa'] = {$gte: event.minCgpa ? event.minCgpa : 0};
+    if (event.batch && event.batch.length > 0) query['batch'] = {$in: event.batch};
+    if (event.department && event.department.length > 0) query['department'] = {$in: event.department};
+
     event.save().then(() => {
 
-        User.find({'cgpa': {$gte: event.minCgpa}}, "email phone").then(users => {
+        User.find(query, "email phone").then(users => {
 
             let toNumbers = users.map(user => user.phone);
             toNumbers = toNumbers.filter(phone => !!phone);
             let emails = users.map(user => user.email);
 
-            console.log(emails, toNumbers);
+            console.log(query, emails, toNumbers);
 
             if (emails.length > 0) {
                 const emailTemplateData = { body: event.body }
@@ -42,7 +48,7 @@ router.post('/', verifyToken, (req, res) => {
 
                 let body = `You are invited to event '${event.title}' scheduled at ${moment(event.date).format('MMMM Do YYYY, h:mm:ss a')}`
 
-                schedule.sendSMSEventAlert({'data': {toNumbers, body}})
+                schedule.sendSMSEventAlert({'data': {toNumbers, body}});
 
                 let dateTime = event.remindAt;
                 if (dateTime) {
@@ -77,12 +83,17 @@ router.put('/', verifyToken, (req, res) => {
     const eventId = req.body._id
     delete req.body._id
 
-
+    
+    
     Event.findByIdAndUpdate(eventId, req.body).then(event => {
+        
+        let query = {};
+        query['cgpa'] = {$gte: event.minCgpa ? event.minCgpa : 0};
+        if (event.batch && event.batch.length > 0) query['batch'] = {$in: event.batch};
+        if (event.department && event.department.length > 0) query['department'] = {$in: event.department};
 
-
-        User.find({'cgpa': {$gte: event.minCgpa}}, "email").distinct('email').then(emails => {
-            console.log(emails);
+        User.find(query, "email").distinct('email').then(emails => {
+            console.log(query, emails);
 
             if (emails.length > 0) {
                 const emailTemplateData = { body: event.body }
@@ -101,13 +112,15 @@ router.put('/', verifyToken, (req, res) => {
                 const oldReminderJob = event.reminderJob;
 
                 let dateTime = event.remindAt;
-                subject = `[Reminder] Event: ${event.title}`;
-                schedule.remindEventThroughEmail({'data': {toAddress, subject, emailTemplate, emailTemplateData, dateTime}}).then(jobId => {
-                    event.reminderJob = jobId;
-                    event.save().catch(err => {
-                        console.log(err);
-                    })
-                });
+                if (dateTime) {
+                    subject = `[Reminder] Event: ${event.title}`;
+                    schedule.remindEventThroughEmail({'data': {toAddress, subject, emailTemplate, emailTemplateData, dateTime}}).then(jobId => {
+                        event.reminderJob = jobId;
+                        event.save().catch(err => {
+                            console.log(err);
+                        })
+                    });
+                }
 
                 // Remove old reminder job from database
                 if (oldReminderJob) {
