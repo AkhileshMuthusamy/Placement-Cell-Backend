@@ -88,6 +88,7 @@ const userSchema = new mongoose.Schema({
         type: Boolean,
         required: false
     },
+    resume: String,
     disabled: {
         type: Boolean,
         default: false

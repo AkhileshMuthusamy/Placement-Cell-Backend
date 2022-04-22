@@ -3,9 +3,18 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const multer = require('multer');
-var upload = multer({
+let storage = multer.diskStorage({
+    destination: function(req, file, cb) { 
+       cb(null, './uploads');    
+    }, 
+    filename: function (req, file, cb) {
+        cb(null , file.originalname);   
+    }
+ });
+let upload = multer({
+    storage: storage,
     limits: { fieldSize: 5 * 1024 * 1024 } // 5 mb
-});
+}).single("file");
 
 // Fetch configuration
 const { port, appUrl } = require('./config');
@@ -30,11 +39,12 @@ const eventRoute = require('./routes/placement/event');
 const skillRoute = require('./routes/placement/skill');
 const departmentRoute = require('./routes/placement/department');
 const batchRoute = require('./routes/placement/batch');
+const resumeRoute = require('./routes/student/resume');
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(upload.array('file', 12));
+app.use(upload);
 
 //Route Middleware
 app.use('/api/register', registerRoute);
@@ -55,6 +65,7 @@ app.use('/api/event', eventRoute);
 app.use('/api/skill', skillRoute);
 app.use('/api/department', departmentRoute);
 app.use('/api/batch', batchRoute);
+app.use('/api/resume', resumeRoute);
 
 app.get('/', (req, res) => {
     res.send('Server is up and running!');
