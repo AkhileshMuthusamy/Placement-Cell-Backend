@@ -59,7 +59,7 @@ router.post('/', (req, res) => {
             console.log(err);
             return res.status(400).json({ 
                 error: true,
-                message: {form: {message: 'Unable to reset password'}},
+                message: 'Unable to reset password',
                 notification: {type: 'ERROR', message: 'Unable to reset password'}
             });
         });
