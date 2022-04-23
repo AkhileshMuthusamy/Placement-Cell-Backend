@@ -29,4 +29,26 @@ router.post('/', verifyToken, (req, res) => {
 
 });
 
+router.get('/', verifyToken, (req, res) => {
+
+    if (!req.query.id) {
+        return res.status(400).json({error: true, message: 'One or more required field missing' });
+    }
+
+    User.findOne({ id: req.query.id }).then(user => {
+        if (!user) {
+            return res.status(400).json({error: true, message: "ID doesn't exists"});
+        }
+
+        if (user.resume) {
+            res.download(`./uploads/${user.resume}`);
+        } else {
+            res.status(400).json({
+                error: true,
+                message: 'No file to download' 
+            })
+        }
+    });
+});
+
 module.exports = router;
