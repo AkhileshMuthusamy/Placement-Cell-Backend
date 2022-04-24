@@ -1,19 +1,83 @@
 const router = require('express').Router();
 const Support = require('../../models/support');
 const User = require('../../models/user');
+const Skill = require('../../models/skill');
 const verifyToken = require('../../modules/auth/verifyToken');
 const internalError = require('../../modules/response/internal-error');
+const mongooseError = require('../../modules/response/mongoose-error');
 const mailer = require('../../modules/email/mailer');
 
 router.get('/', verifyToken, (req, res) => {
 
-    User.find({'skills': {$ne: null}}).distinct('skills').then(users => {
+    // User.find({'skills': {$ne: null}}).distinct('skills').then(skills => {
 
+    //     res.status(200).json({
+    //         data: skills,
+    //         error: false,
+    //     });
+
+    // }).catch(err => internalError(res, err));
+
+    Skill.find({}).distinct('name').then(skills => {
         res.status(200).json({
-            data: users,
+            data: skills,
             error: false,
         });
+    
+    }).catch(err => internalError(res, err));
+});
 
+router.get('/list', verifyToken, (req, res) => {
+
+    Skill.find({}).then(skills => {
+        res.status(200).json({
+            data: skills,
+            error: false,
+        });
+    
+    }).catch(err => internalError(res, err));
+});
+
+router.post('/add', verifyToken, (req, res) => {
+
+    const skill = new Skill(req.body);
+    let error = skill.validateSync(); // Validate fields
+
+    if (error) {
+        res.status(400).json({error: true, message: error.errors, notification: {type: 'ERROR', message: 'One or more fields has error'}})
+    } else {
+        skill.save().then(() => {
+            res.status(200).json({
+                data: skill._doc,
+                error: false,
+                notification: {type: 'INFO', message: 'Skill added successfully!'}
+            });
+        }).catch(err => {
+            if (err.hasOwnProperty('code')) {
+                mongooseError(res, err);
+            } else {
+                internalError(res, err);
+            }
+        });
+    }
+});
+
+
+router.delete('/', verifyToken, (req, res) => {
+    
+    let _id = req.query._id;
+
+    if (!_id) return res.status(400).json({error: true, message: 'Field \'_id\' missing' });
+
+    // In-order for pre hook to work, the doc must be fetched and then deleted
+    Skill.findOne({_id}).then(skill => {
+        skill.deleteOne().then(result => {
+            res.status(200).json({
+                data: result,
+                error: false,
+                notification: {type: 'INFO', message: 'Skill deleted successfully!'}
+            });
+        }).catch(err => internalError(res, err));
     }).catch(err => internalError(res, err));
 });
 
