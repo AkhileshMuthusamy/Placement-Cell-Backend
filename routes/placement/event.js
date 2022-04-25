@@ -48,7 +48,7 @@ router.post('/', verifyToken, (req, res) => {
                 let subject = `New Event Invitation: ${event.title}`;
                 const emailTemplate = './modules/email/templates/new_event.ejs';
     
-                schedule.sendEventAlert({'data': {toAddress, subject, emailTemplate, emailTemplateData}}).then(() => {
+                schedule.sendEventAlert({'data': {toAddress, subject, emailTemplate, emailTemplateData, jd: event.jd}}).then(() => {
                     res.status(200).json({
                         data: event,
                         error: false,
@@ -63,7 +63,7 @@ router.post('/', verifyToken, (req, res) => {
                 let dateTime = event.remindAt;
                 if (dateTime) {
                     subject = `[Reminder] Event: ${event.title}`;
-                    schedule.remindEventThroughEmail({'data': {toAddress, subject, emailTemplate, emailTemplateData, dateTime}}).then(jobId => {
+                    schedule.remindEventThroughEmail({'data': {toAddress, subject, emailTemplate, emailTemplateData, dateTime, jd: event.jd}}).then(jobId => {
                         event.reminderJob = jobId;
                         event.save().catch(err => {
                             console.log(err);
@@ -115,7 +115,7 @@ router.put('/', verifyToken, (req, res) => {
                 let subject = `Event Updated: ${_event.title}`;
                 const emailTemplate = './modules/email/templates/new_event.ejs';
     
-                schedule.sendEventAlert({'data': {toAddress, subject, emailTemplate, emailTemplateData}}).then((jobId) => {
+                schedule.sendEventAlert({'data': {toAddress, subject, emailTemplate, emailTemplateData, jd: _event.jd}}).then((jobId) => {
                     res.status(200).json({
                         data: event,
                         error: false,
@@ -128,7 +128,7 @@ router.put('/', verifyToken, (req, res) => {
                 let dateTime = _event.remindAt;
                 if (dateTime) {
                     subject = `[Reminder] Event: ${_event.title}`;
-                    schedule.remindEventThroughEmail({'data': {toAddress, subject, emailTemplate, emailTemplateData, dateTime}}).then(jobId => {
+                    schedule.remindEventThroughEmail({'data': {toAddress, subject, emailTemplate, emailTemplateData, dateTime, jd: _event.jd}}).then(jobId => {
                         event.reminderJob = jobId;
                         event.save().catch(err => {
                             console.log(err);

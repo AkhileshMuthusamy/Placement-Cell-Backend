@@ -51,11 +51,6 @@ function sendEmailWithAttachment(toAddress, subject, body, attachmentBase64) {
         html: body, // html body
         attachments: [
           {
-            // utf-8 string as an attachment
-            filename: 'text1.txt',
-            content: 'hello world!'
-          },
-          {
             filename: `${attachmentBase64.substring(start + 1, end)}`,
             // data uri as an attachment
             path: attachmentBase64
@@ -73,30 +68,37 @@ function sendEmailWithAttachment(toAddress, subject, body, attachmentBase64) {
   });
 }
 
-function sendEmailWithAttachments(toAddress, subject, body, attachments) {
+function sendEmailWithAttachments(toAddress, subject, bodyTemplate, bodyTemplateData, attachments) {
   return new Promise(function(resolve, reject) {
     let emailAttachments = [];
     attachments.forEach(file => {
-      emailAttachments.push({ filename: file.originalname, content: file.buffer });
+      emailAttachments.push({ path: `./uploads/${file}` });
     });
 
     console.dir(emailAttachments);
-    transporter.sendMail(
-      {
-        from: process.env.NOTIFY_EMAIL, // sender address
-        to: toAddress, // list of receivers
-        subject: subject, // Subject line
-        html: body, // html body
-        attachments: emailAttachments
-      },
-      (err, info) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(info);
-        }
-      }
-    );
+
+    htmlEmail
+      .render(bodyTemplate, bodyTemplateData)
+      .then(html => {
+        transporter.sendMail(
+          {
+            from: process.env.NOTIFY_EMAIL, // sender address
+            to: toAddress, // list of receivers
+            subject: subject, // Subject line
+            html: html, // html body
+            attachments: emailAttachments
+          },
+          (err, info) => {
+            if (err) {
+              reject(err);
+            } else {
+              resolve(info);
+            }
+          }
+        );
+      }).catch(err => {
+        reject(err);
+      });
   });
 }
 

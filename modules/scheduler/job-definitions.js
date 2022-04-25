@@ -5,9 +5,21 @@ const client = require('twilio')(process.env.TWILIO_ACC_SID, process.env.TWILIO_
 const jobDefinitions = (agenda) => {
     agenda.define("send email", async(job, done) => {
 
-        const {toAddress, subject, emailTemplate, emailTemplateData} = job.attrs.data;
+        const {toAddress, subject, emailTemplate, emailTemplateData, jd} = job.attrs.data;
 
-        await mailer
+        if (jd) {
+            await mailer
+            .sendEmailWithAttachments(toAddress, subject, emailTemplate, emailTemplateData, [jd])
+            .then(info => {
+                console.log('Email sent: %s', info.messageId);                
+            })
+            .catch(err => {
+                console.error('Job Error: Send Email');
+                console.log(err);
+            });
+        }
+        else {
+            await mailer
             .sendHtmlEmail(toAddress, subject, emailTemplate, emailTemplateData)
             .then(info => {
                 console.log('Email sent: %s', info.messageId);                
@@ -16,6 +28,7 @@ const jobDefinitions = (agenda) => {
                 console.error('Job Error: Send Email');
                 console.log(err);
             });
+        }
 
         done();
     });
