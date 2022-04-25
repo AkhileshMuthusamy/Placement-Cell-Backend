@@ -19,6 +19,12 @@ const eventSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    minHSMark: {
+        type: Number,
+        required: true
+    },
+    jd: String,
+    skills: [String],
     batch: [String],
     department: [String],
     remindAt: Date,

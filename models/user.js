@@ -76,6 +76,7 @@ const userSchema = new mongoose.Schema({
     },
     skills: [String],
     cgpa: Number,
+    hsMark: Number,
     resetPasswordToken: {
         type: String,
         required: false

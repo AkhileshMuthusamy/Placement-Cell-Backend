@@ -1,6 +1,7 @@
 const app = require('express')();
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const {getDateTimeString} = require('./modules/date-util');
 
 const multer = require('multer');
 let storage = multer.diskStorage({
@@ -8,7 +9,12 @@ let storage = multer.diskStorage({
        cb(null, './uploads');    
     }, 
     filename: function (req, file, cb) {
-        cb(null , file.originalname);   
+        console.log(req.url);
+        if (req.url === '/api/event/fetch-skills') {
+            cb(null, `JD_${getDateTimeString()}.${file.originalname.split('.').pop()}`)
+        } else {
+            cb(null , file.originalname);   
+        }
     }
  });
 let upload = multer({
