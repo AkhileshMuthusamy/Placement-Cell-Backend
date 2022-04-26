@@ -70,6 +70,11 @@ router.post('/', verifyToken, (req, res) => {
                         })
                     });
                 }
+            } else {
+                res.status(400).json({
+                    error: false,
+                    notification: {type: 'ERROR', message: 'No student is eligible to attend the event under this condition. Please update the condition.'}
+                });
             }
 
         });
