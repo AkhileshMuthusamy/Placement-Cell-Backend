@@ -194,18 +194,32 @@ router.get('/list', verifyToken, (req, res) => {
 
 function extractMatchedSkills(fileContent, skills) {
     fileContent = fileContent.toLowerCase();
+    fileContent = fileContent.replace(/\+/g, 'ooPLUSoo');
+    fileContent = fileContent.replace(/\#/g, 'ooHASHoo');
     matchedSkills = []
 
     skills.forEach(skill => {
         console.log(skill.toLowerCase());
 
-        let combination_1 = fileContent.includes(`${skill.toLowerCase()},`);
-        let combination_2 = fileContent.includes(`${skill.toLowerCase()}.`);
-        let combination_3 = fileContent.includes(`${skill.toLowerCase()} `);
+        let matchWord = skill.toLowerCase();
+        matchWord = matchWord.replace(/\+/g, 'ooPLUSoo');
+        matchWord = matchWord.replace(/\#/g, 'ooHASHoo');
 
-        if (combination_1 || combination_2 || combination_3) {
-            matchedSkills.push(skill);
+        if (matchWord.indexOf('.') === -1) {
+            if (fileContent.match(new RegExp(`\\b${matchWord}(?!\\w)`, 'g'))) {
+                matchedSkills.push(skill);
+            }    
+        } else {
+            let combination_1 = fileContent.includes(`${skill.toLowerCase()},`);
+            let combination_2 = fileContent.includes(`${skill.toLowerCase()}.`);
+            let combination_3 = fileContent.includes(`${skill.toLowerCase()} `);
+    
+            if (combination_1 || combination_2 || combination_3) {
+                matchedSkills.push(skill);
+            }
         }
+
+
     });
 
     return matchedSkills;
