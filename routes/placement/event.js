@@ -242,7 +242,10 @@ router.post('/fetch-skills', (req, res) => {
                 let matchedSkills = extractMatchedSkills(text, skills);
         
                 return res.status(200).json({
-                    data: matchedSkills,
+                    data: {
+                        skills: matchedSkills,
+                        jd: req.file.filename
+                    },
                     error: false,
                 });
             });
