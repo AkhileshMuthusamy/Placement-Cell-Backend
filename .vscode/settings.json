@@ -3,6 +3,7 @@
         "cgpa",
         "originalname",
         "sgpa",
+        "sslc",
         "streamifier"
     ]
 }

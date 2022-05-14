@@ -19,6 +19,10 @@ const eventSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    minSslcMark: {
+        type: Number,
+        required: true
+    },
     minHSMark: {
         type: Number,
         required: true

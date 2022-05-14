@@ -27,22 +27,24 @@ router.post('/', verifyToken, (req, res) => {
         query = {$and: event.skills.map(skill => { return {'skills': skill}})};
     }
     query['cgpa'] = {$gte: event.minCgpa ? event.minCgpa : 0};
+    query['sslcMark'] = {$gte: event.minSslcMark ? event.minSslcMark : 0};
     query['hsMark'] = {$gte: event.minHSMark ? event.minHSMark : 0};
     if (event.batch && event.batch.length > 0) query['batch'] = {$in: event.batch};
     if (event.department && event.department.length > 0) query['department'] = {$in: event.department};
 
     console.log(query);
-    event.save().then(() => {
+    
 
-        User.find(query, "email phone").then(users => {
+    User.find(query, "email phone").then(users => {
 
-            let toNumbers = users.map(user => user.phone);
-            toNumbers = toNumbers.filter(phone => !!phone);
-            let emails = users.map(user => user.email);
+        let toNumbers = users.map(user => user.phone);
+        toNumbers = toNumbers.filter(phone => !!phone);
+        let emails = users.map(user => user.email);
 
-            console.log(query, emails, toNumbers);
+        console.log(query, emails, toNumbers);
 
-            if (emails.length > 0) {
+        if (emails.length > 0) {
+            event.save().then(() => {
                 const emailTemplateData = { body: event.body }
                 const toAddress = emails.join(', ');
                 let subject = `New Event Invitation: ${event.title}`;
@@ -58,7 +60,7 @@ router.post('/', verifyToken, (req, res) => {
 
                 let body = `You are invited to event '${event.title}' scheduled at ${moment(event.date).format('MMMM Do YYYY, h:mm:ss a')}`
 
-                schedule.sendSMSEventAlert({'data': {toNumbers, body}});
+                // schedule.sendSMSEventAlert({'data': {toNumbers, body}});
 
                 let dateTime = event.remindAt;
                 if (dateTime) {
@@ -70,18 +72,15 @@ router.post('/', verifyToken, (req, res) => {
                         })
                     });
                 }
-            } else {
-                res.status(400).json({
-                    error: false,
-                    notification: {type: 'ERROR', message: 'No student is eligible to attend the event under this condition. Please update the condition.'}
-                });
-            }
+            }).catch(err => internalError(res, err));
+        } else {
+            res.status(400).json({
+                error: false,
+                notification: {type: 'ERROR', message: 'No student is eligible to attend the event under this condition. Please update the condition.'}
+            });
+        }
 
-        });
-
-
-    }).catch(err => internalError(res, err));
-
+    });
 
     
 });
@@ -92,29 +91,29 @@ router.put('/', verifyToken, (req, res) => {
     let error = _event.validateSync(); // Validate fields
 
     if (error) {
-        res.status(400).json({error: true, message: error.errors, notification: {type: 'ERROR', message: 'One or more fields has error'}})
+        res.status(400).json({error: true, message: error.errors, notification: {type: 'ERROR', message: 'One or more fields has error'}});
     }
 
-    const eventId = req.body._id
-    delete req.body._id
-
+    const eventId = req.body._id;
+    delete req.body._id;
     
-    
-    Event.findByIdAndUpdate(eventId, req.body).then(event => {
         
-        let query = {};
-        if (_event.skills && _event.skills.length > 0) {
-            query = {$and: _event.skills.map(skill => { return {'skills': skill}})};
-        }
-        query['cgpa'] = {$gte: _event.minCgpa ? _event.minCgpa : 0};
-        query['hsMark'] = {$gte: _event.minHSMark ? _event.minHSMark : 0};
-        if (_event.batch && _event.batch.length > 0) query['batch'] = {$in: _event.batch};
-        if (_event.department && _event.department.length > 0) query['department'] = {$in: _event.department};
+    let query = {};
+    if (_event.skills && _event.skills.length > 0) {
+        query = {$and: _event.skills.map(skill => { return {'skills': skill}})};
+    }
+    query['cgpa'] = {$gte: _event.minCgpa ? _event.minCgpa : 0};
+    query['sslcMark'] = {$gte: _event.minSslcMark ? _event.minSslcMark : 0};
+    query['hsMark'] = {$gte: _event.minHSMark ? _event.minHSMark : 0};
+    if (_event.batch && _event.batch.length > 0) query['batch'] = {$in: _event.batch};
+    if (_event.department && _event.department.length > 0) query['department'] = {$in: _event.department};
 
-        User.find(query, "email").distinct('email').then(emails => {
-            console.log(query, emails);
+    User.find(query, "email").distinct('email').then(emails => {
+        console.log(query, emails);
 
-            if (emails.length > 0) {
+        if (emails.length > 0) {
+
+            Event.findByIdAndUpdate(eventId, req.body).then(event => {
                 const emailTemplateData = { body: _event.body }
                 const toAddress = emails.join(', ');
                 let subject = `Event Updated: ${_event.title}`;
@@ -149,14 +148,14 @@ router.put('/', verifyToken, (req, res) => {
                         console.log('Old job canceled', result);
                     });
                 }
-            } else {
-                res.status(400).json({
-                    error: false,
-                    notification: {type: 'ERROR', message: 'No student is eligible to attend the event under this condition. Please update the condition.'}
-                });
-            }
+            });
+        } else {
+            res.status(400).json({
+                error: false,
+                notification: {type: 'ERROR', message: 'No student is eligible to attend the event under this condition. Please update the condition.'}
+            });
+        }
 
-        });
     });
     
 });
