@@ -14,7 +14,7 @@ const markSchema = new mongoose.Schema({
         required: [true, 'Field cannot be empty'],
     },
     marks: {
-        type: [new mongoose.Schema({ subject: String, mark: Number })],
+        type: [new mongoose.Schema({ subject: String, mark: Number, credit: Number })],
         required: [true, 'Field cannot be empty'],
     },
     previousGpa: [Number],
