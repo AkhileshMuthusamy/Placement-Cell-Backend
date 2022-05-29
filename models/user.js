@@ -58,13 +58,17 @@ const userSchema = new mongoose.Schema({
             message: '{VALUE} is not supported'
         }
     },
-    phone: {
+    phone: String,
+    parentPhone: String,
+    parent1Name: String,
+    parent2Name: String,
+    address: String,
+    landmark: String,
+    city: String,
+    state: String,
+    nationality: {
         type: String,
-        required: false
-    },
-    address: {
-        type: String,
-        required: false
+        default: 'IN'
     },
     department: {
         type: String,
