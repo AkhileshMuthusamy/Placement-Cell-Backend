@@ -60,7 +60,7 @@ router.post('/', verifyToken, (req, res) => {
 
                 let body = `You are invited to event '${event.title}' scheduled at ${moment(event.date).format('MMMM Do YYYY, h:mm:ss a')}`
 
-                schedule.sendSMSEventAlert({'data': {toNumbers, body}});
+                // schedule.sendSMSEventAlert({'data': {toNumbers, body}});
 
                 let dateTime = event.remindAt;
                 if (dateTime) {
