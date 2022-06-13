@@ -24,7 +24,7 @@ router.post('/', verifyToken, (req, res) => {
 
     let query = {};
     if (event.skills && event.skills.length > 0) {
-        query = {$and: event.skills.map(skill => { return {'skills': skill}})};
+        query = {'skills': {$in: event.skills}};
     }
     if (event.minCgpa && event.minCgpa > 0) {
         query['cgpa'] = {$gte: event.minCgpa ? event.minCgpa : 0};
@@ -102,7 +102,7 @@ router.put('/', verifyToken, (req, res) => {
         
     let query = {};
     if (_event.skills && _event.skills.length > 0) {
-        query = {$and: _event.skills.map(skill => { return {'skills': skill}})};
+        query = {'skills': {$in: _event.skills}};
     }
     query['cgpa'] = {$gte: _event.minCgpa ? _event.minCgpa : 0};
     query['sslcMark'] = {$gte: _event.minSslcMark ? _event.minSslcMark : 0};
