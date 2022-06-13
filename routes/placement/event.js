@@ -26,7 +26,9 @@ router.post('/', verifyToken, (req, res) => {
     if (event.skills && event.skills.length > 0) {
         query = {$and: event.skills.map(skill => { return {'skills': skill}})};
     }
-    query['cgpa'] = {$gte: event.minCgpa ? event.minCgpa : 0};
+    if (event.minCgpa && event.minCgpa > 0) {
+        query['cgpa'] = {$gte: event.minCgpa ? event.minCgpa : 0};
+    }
     query['sslcMark'] = {$gte: event.minSslcMark ? event.minSslcMark : 0};
     query['hsMark'] = {$gte: event.minHSMark ? event.minHSMark : 0};
     if (event.batch && event.batch.length > 0) query['batch'] = {$in: event.batch};
