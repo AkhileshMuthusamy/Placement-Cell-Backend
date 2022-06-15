@@ -12,11 +12,14 @@ let storage = multer.diskStorage({
         console.log(req.url);
         if (req.url === '/api/event/fetch-skills') {
             cb(null, `JD_${getDateTimeString()}.${file.originalname.split('.').pop()}`)
+        } else if (req.url === '/api/resume') {
+            cb(null, `RES_${getDateTimeString()}.${file.originalname.split('.').pop()}`)
         } else {
-            cb(null , file.originalname);   
+            cb(null, file.originalname);   
         }
     }
- });
+});
+
 let upload = multer({
     storage: storage,
     limits: { fieldSize: 5 * 1024 * 1024 } // 5 mb
