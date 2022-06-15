@@ -104,7 +104,9 @@ router.put('/', verifyToken, (req, res) => {
     if (_event.skills && _event.skills.length > 0) {
         query = {'skills': {$in: _event.skills}};
     }
-    query['cgpa'] = {$gte: _event.minCgpa ? _event.minCgpa : 0};
+    if (_event.minCgpa && _event.minCgpa > 0) {
+        query['cgpa'] = {$gte: _event.minCgpa ? _event.minCgpa : 0};
+    }
     query['sslcMark'] = {$gte: _event.minSslcMark ? _event.minSslcMark : 0};
     query['hsMark'] = {$gte: _event.minHSMark ? _event.minHSMark : 0};
     if (_event.batch && _event.batch.length > 0) query['batch'] = {$in: _event.batch};
